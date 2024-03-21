@@ -2,3 +2,15 @@ Thu 21 Mar 2024 05:46:43 PM UTC:
  tests:  0|5
 total_score: 0/70
 6101767
+Thu 21 Mar 2024 05:47:35 PM UTC: 
+ exercises.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
+In file included from test.c:5:
+exercises.c: In function ‘crea_lista’:
+exercises.c:49:5: error: implicit declaration of function ‘push_back’; did you mean ‘pushBack’? [-Werror=implicit-function-declaration]
+   49 |     push_back(L, dato);
+      |     ^~~~~~~~~
+      |     pushBack
+cc1: all warnings being treated as errors
+Compilation failed
+4a7ab75
