@@ -107,7 +107,7 @@ int parentesisBalanceados(char *cadena) {
   //Itera mientras la cadena sea diferente de un caracter nulo
   for (int i = 0; cadena[i] != '\0'; i++) {
       if (cadena[i] == '(' || cadena[i] == '[' || cadena[i] == '{') {
-          parentesis[top++] = cadena[i];
+          parentesis[++top] = cadena[i];
       }
       // Si encontramos un paréntesis cerrado
       else if (cadena[i] == ')' || cadena[i] == ']' || cadena[i] == '}') {
