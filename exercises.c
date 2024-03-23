@@ -101,14 +101,13 @@ paraéntesis balanceados. Retorna 1 si están balanceados,
 */
 
 int parentesisBalanceados(char *cadena) {
-  char stack[1000]; // Usaremos un arreglo para simular una pila para almacenar los paréntesis abiertos
-  int top = -1; // Índice que representa el tope de la pila
+  char parentesis[1000];
+  int top = -1; //-1 para indicar que la pila esta vacia.
 
-  // Iteramos sobre cada carácter de la cadena
+  //Itera mientras la cadena sea diferente de un caracter nulo
   for (int i = 0; cadena[i] != '\0'; i++) {
-      // Si encontramos un paréntesis abierto, lo agregamos a la pila
       if (cadena[i] == '(' || cadena[i] == '[' || cadena[i] == '{') {
-          stack[++top] = cadena[i];
+          parentesis[top++] = cadena[i];
       }
       // Si encontramos un paréntesis cerrado
       else if (cadena[i] == ')' || cadena[i] == ']' || cadena[i] == '}') {
@@ -117,9 +116,9 @@ int parentesisBalanceados(char *cadena) {
               return 0; // Paréntesis desbalanceados
           }
           // Si el paréntesis cerrado no coincide con el último paréntesis abierto en la pila, están desbalanceados
-          else if ((cadena[i] == ')' && stack[top] != '(') ||
-                   (cadena[i] == ']' && stack[top] != '[') ||
-                   (cadena[i] == '}' && stack[top] != '{')) {
+          else if ((cadena[i] == ')' && parentesis[top] != '(') ||
+                   (cadena[i] == ']' && parentesis[top] != '[') ||
+                   (cadena[i] == '}' && parentesis[top] != '{')) {
               return 0; // Paréntesis desbalanceados
           }
           // Si coincide, eliminamos el paréntesis abierto de la pila
