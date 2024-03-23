@@ -101,25 +101,33 @@ paraéntesis balanceados. Retorna 1 si están balanceados,
 */
 
 int parentesisBalanceados(char *cadena) {
-   int contador = 0; // Contador para mantener el equilibrio de los paréntesis
+  char stack[1000]; // Usaremos un arreglo para simular una pila para almacenar los paréntesis abiertos
+  int top = -1; // Índice que representa el tope de la pila
 
-      // Iteramos sobre cada carácter de la cadena
-      for (int i = 0; cadena[i] != '\0'; i++) {
-          // Si encontramos un paréntesis abierto, aumentamos el contador
-          if (cadena[i] == '(' || cadena[i] == '[' || cadena[i] == '{') {
-              contador++;
-          }
-          // Si encontramos un paréntesis cerrado, disminuimos el contador
-          else if (cadena[i] == ')' || cadena[i] == ']' || cadena[i] == '}') {
-              contador--;
-          }
-
-          // Si el contador se vuelve negativo en algún punto, significa que hay más paréntesis cerrados que abiertos
-          if (contador < 0) {
+  // Iteramos sobre cada carácter de la cadena
+  for (int i = 0; cadena[i] != '\0'; i++) {
+      // Si encontramos un paréntesis abierto, lo agregamos a la pila
+      if (cadena[i] == '(' || cadena[i] == '[' || cadena[i] == '{') {
+          stack[++top] = cadena[i];
+      }
+      // Si encontramos un paréntesis cerrado
+      else if (cadena[i] == ')' || cadena[i] == ']' || cadena[i] == '}') {
+          // Si la pila está vacía, significa que no hay un paréntesis abierto correspondiente
+          if (top == -1) {
               return 0; // Paréntesis desbalanceados
           }
+          // Si el paréntesis cerrado no coincide con el último paréntesis abierto en la pila, están desbalanceados
+          else if ((cadena[i] == ')' && stack[top] != '(') ||
+                   (cadena[i] == ']' && stack[top] != '[') ||
+                   (cadena[i] == '}' && stack[top] != '{')) {
+              return 0; // Paréntesis desbalanceados
+          }
+          // Si coincide, eliminamos el paréntesis abierto de la pila
+          else {
+              top--;
+          }
       }
-
-      // Al finalizar, si el contador es 0, significa que todos los paréntesis tienen sus cierres correspondientes
-      return (contador == 0) ? 1 : 0;
+  }
+  // Al finalizar, si la pila está vacía, significa que todos los paréntesis tienen sus cierres correspondientes
+  return (top == -1) ? 1 : 0;
   }
