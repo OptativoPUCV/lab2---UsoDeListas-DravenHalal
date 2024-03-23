@@ -106,22 +106,17 @@ int parentesisBalanceados(char *cadena) {
 
   //Itera mientras la cadena sea diferente de un caracter nulo
   for (int i = 0; cadena[i] != '\0'; i++) {
-      if (cadena[i] == '(' || cadena[i] == '[' || cadena[i] == '{') {
-        top++;
-        parentesis[top] = cadena[i];
-      }
+    if (cadena[i] == '(' || cadena[i] == '[' || cadena[i] == '{') {
+      top++;
+       parentesis[top] = cadena[i];
+    }
       // Si encontramos un paréntesis cerrado
-      else if (cadena[i] == ')' || cadena[i] == ']' || cadena[i] == '}') {
-          // Si la pila está vacía, significa que no hay un paréntesis abierto correspondiente
-          if (top == -1) {
-              return 0; // Paréntesis desbalanceados
-          }
+    else if (cadena[i] == ')' || cadena[i] == ']' || cadena[i] == '}') {
+      if (top == -1) {
+        return 0;
+      }
           // Si el paréntesis cerrado no coincide con el último paréntesis abierto en la pila, están desbalanceados
-          else if ((cadena[i] == ')' && parentesis[top] != '(') ||
-                   (cadena[i] == ']' && parentesis[top] != '[') ||
-                   (cadena[i] == '}' && parentesis[top] != '{')) {
-              return 0; // Paréntesis desbalanceados
-          }
+      else if ((cadena[i] == ')' && parentesis[top] != '(') || (cadena[i] == ']' && parentesis[top] != '[') || (cadena[i] == '}' && parentesis[top] != '{')) return 0;
           // Si coincide, eliminamos el paréntesis abierto de la pila
           else {
               top--;
