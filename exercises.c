@@ -115,14 +115,13 @@ int parentesisBalanceados(char *cadena) {
       if (top == -1) {
         return 0;
       }
-          // Si el paréntesis cerrado no coincide con el último paréntesis abierto en la pila, están desbalanceados
       else if ((cadena[i] == ')' && parentesis[top] != '(') ||
         (cadena[i] == ']' && parentesis[top] != '[') || 
         (cadena[i] == '}' && parentesis[top] != '{')) return 0;
-          // Si coincide, eliminamos el paréntesis abierto de la pila
       else top--;
       }
   }
   // Al finalizar, si la pila está vacía, significa que todos los paréntesis tienen sus cierres correspondientes
-  return (top == -1) ? 1 : 0;
+  if(top == -1) return 1;
+  else return 0;
   }
