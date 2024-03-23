@@ -101,6 +101,25 @@ paraéntesis balanceados. Retorna 1 si están balanceados,
 */
 
 int parentesisBalanceados(char *cadena) {
-   return 0;
-}
+   int contador = 0; // Contador para mantener el equilibrio de los paréntesis
 
+      // Iteramos sobre cada carácter de la cadena
+      for (int i = 0; cadena[i] != '\0'; i++) {
+          // Si encontramos un paréntesis abierto, aumentamos el contador
+          if (cadena[i] == '(' || cadena[i] == '[' || cadena[i] == '{') {
+              contador++;
+          }
+          // Si encontramos un paréntesis cerrado, disminuimos el contador
+          else if (cadena[i] == ')' || cadena[i] == ']' || cadena[i] == '}') {
+              contador--;
+          }
+
+          // Si el contador se vuelve negativo en algún punto, significa que hay más paréntesis cerrados que abiertos
+          if (contador < 0) {
+              return 0; // Paréntesis desbalanceados
+          }
+      }
+
+      // Al finalizar, si el contador es 0, significa que todos los paréntesis tienen sus cierres correspondientes
+      return (contador == 0) ? 1 : 0;
+  }
